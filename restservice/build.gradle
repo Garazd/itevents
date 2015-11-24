@@ -18,6 +18,8 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+    forkEvery = 0
+//    maxParallelFork = 1
 }
 
 dependencies {
