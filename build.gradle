@@ -10,9 +10,6 @@ subprojects {
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
 
-    tasks.withType(Test) {
-        maxParallelForks = 1
-    }
 }
 
 defaultTasks 'clean', 'assemble', 'liquibaseUpdate', 'test'
