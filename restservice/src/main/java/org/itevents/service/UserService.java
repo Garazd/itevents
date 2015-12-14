@@ -1,5 +1,6 @@
 package org.itevents.service;
 
+import org.itevents.model.Event;
 import org.itevents.model.User;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,17 @@ public interface UserService {
 
     void addUser(User user);
 
-    User getUser(int id);
+    User getUser(int userId);
 
     User getUserByName(String name);
 
+    User getAuthorizedUser();
+
+    void activateUserSubscription(User user);
+
+    void deactivateUserSubscription(User user);
+
     List<User> getAllUsers();
 
-    User removeUser(User user);
+    List<User> getUsersByEvent(Event event);
 }
