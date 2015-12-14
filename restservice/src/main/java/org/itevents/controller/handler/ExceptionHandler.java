@@ -1,6 +1,5 @@
 package org.itevents.controller.handler;
 
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 

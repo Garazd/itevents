@@ -136,4 +136,24 @@ public class UserRestControllerTest extends AbstractControllerSecurityTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedEventsInJson));
     }
+
+    @Test
+    public void shouldReceivePostWithInvitingFriends() throws Exception {
+        int id = -1;
+        String email = "address@mail.com";
+
+        mockMvc.perform(post("/users/" + id + "/invites")
+                .param("email", email))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void expectBadRequestIfEmailNotValid() throws Exception {
+        int id = -1;
+        String email = "some_not_valid_email";
+
+        mockMvc.perform(post("/users/" + id + "/invites")
+                .param("email", email))
+                .andExpect(status().isBadRequest());
+    }
 }

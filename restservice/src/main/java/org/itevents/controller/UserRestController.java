@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.hibernate.validator.constraints.Email;
 import org.itevents.model.Event;
 import org.itevents.model.Filter;
 import org.itevents.model.User;
@@ -18,6 +19,7 @@ import org.itevents.wrapper.FilterWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -26,6 +28,7 @@ import java.util.List;
 @RestController
 @Api("Users")
 @RequestMapping("/users")
+@Validated
 public class UserRestController {
     @Inject
     private UserService userService;
@@ -108,5 +111,13 @@ public class UserRestController {
             List<Event> events = eventService.getEventsByUser(user);
             return new ResponseEntity<>(events, HttpStatus.OK);
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/{user_id}/invites")
+    public String inviteFriends(
+            @PathVariable("user_id") int userId,
+            @RequestParam("email") @Email String email) {
+        return "";
     }
 }
